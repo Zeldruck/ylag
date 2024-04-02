@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 fun HomeReminder() {
     Row (
         modifier = Modifier
-            .background(Color.Gray)
+            .background(Color(0xffd3d3d3))
             .fillMaxWidth()
             .height(75.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,

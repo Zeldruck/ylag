@@ -4,7 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.material.icons.filled.*
 
-data class Case(val name:String,
+data class Case(val name: String,
                 val icon: ImageVector
 )
 
