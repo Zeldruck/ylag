@@ -38,11 +38,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview(showBackground = true, showSystemUi = true)
@@ -73,6 +68,7 @@ private fun MainScreenNavigationConfigurations(
 
         composable("Achievements")
         {
+            // TODO
             HomeScreen()
         }
 
