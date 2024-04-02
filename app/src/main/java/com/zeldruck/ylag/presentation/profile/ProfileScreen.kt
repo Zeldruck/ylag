@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ProfileScreen() {
     Column(
-        Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
