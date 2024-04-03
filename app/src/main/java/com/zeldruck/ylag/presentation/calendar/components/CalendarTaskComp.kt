@@ -3,6 +3,7 @@ package com.zeldruck.ylag.presentation.calendar.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,7 +29,10 @@ fun CalendarTaskComp(time: String, description: String) {
         modifier = Modifier
             .width(screenWidth * 0.95f)
             .background(Color(0xffd3d3d3))
-            .height(60.dp),
+            .height(60.dp)
+            .clickable(
+               onClick = {  }
+            ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
@@ -38,7 +42,10 @@ fun CalendarTaskComp(time: String, description: String) {
             modifier = Modifier
                 .background(Color.Green)
                 .padding(10.dp, 0.dp)
-                .fillMaxHeight(),
+                .fillMaxHeight()
+                .clickable(
+                    onClick = {  }
+                ),
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Reward", fontSize = 18.sp)
