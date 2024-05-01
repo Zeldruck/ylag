@@ -1,8 +1,12 @@
 package com.zeldruck.ylag.presentation.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -11,61 +15,38 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import com.zeldruck.ylag.presentation.CEEvents
+import com.zeldruck.ylag.presentation.CEventState
 import com.zeldruck.ylag.presentation.home.components.HomeReminder
 
-@Preview(showBackground = true)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
-    val state = rememberScrollState()
+fun HomeScreen(
+    state: CEventState,
+    navController: NavController,
+    navHostController: NavHostController,
+    onEvent: (CEEvents) -> Unit
+) {
+    val sState = rememberScrollState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(0.9f)
-            .verticalScroll(state),
-        horizontalAlignment = Alignment.CenterHorizontally
-
-    ) {
-        Column (
-            modifier = Modifier
-                .padding(0.dp, 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(text = "Today", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.height(20.dp))
-            repeat(3){
-                HCompPreview()
-            }
+    Scaffold(
+        bottomBar = {
+            com.zeldruck.ylag.presentation.nav.components.NavigationBar(navController = navHostController)
         }
-        Spacer(modifier = Modifier.height(10.dp))
-        Column (
+    ) { paddingValues ->
+        LazyColumn(
+            contentPadding = paddingValues,
             modifier = Modifier
-                .padding(0.dp, 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .padding(8.dp)
+                .verticalScroll(sState),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(text = "02/04/2024", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.height(20.dp))
-            repeat(3){
-                HCompPreview()
-            }
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        Column (
-            modifier = Modifier
-                .padding(0.dp, 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(text = "03/04/2024", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.height(20.dp))
-            repeat(3){
-                HCompPreview()
+            items(state.cEvents.size) { index ->
+                HomeReminder(state = state, index = index)
             }
         }
     }
-}
-
-@Composable
-fun HCompPreview() {
-    HomeReminder()
-    Spacer(modifier = Modifier.height(10.dp))
 }

@@ -19,9 +19,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zeldruck.ylag.presentation.CEventState
 
 @Composable
-fun CalendarTaskComp(time: String, description: String) {
+fun CalendarTaskComp(
+    state: CEventState,
+    index: Int
+) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
 
@@ -36,8 +40,8 @@ fun CalendarTaskComp(time: String, description: String) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Text(text = time, fontSize = 18.sp)
-        Text(text = description, fontSize = 18.sp)
+        Text(text = state.cEvents[index].title, fontSize = 18.sp)
+        Text(text = "Short description.", fontSize = 18.sp)
         Column(
             modifier = Modifier
                 .background(Color.Green)
